@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PPlayer : MonoBehaviour
 {
-    public const float speed = 2.5f;
+    public const float speed = 5f;
 
     public GameObject interactionPopup;
 
@@ -25,10 +25,12 @@ public class PPlayer : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");     
         float moveY = Input.GetAxisRaw("Vertical");
 
+        Vector3 move = new Vector3(moveX, moveY, 0).normalized;
+        transform.position += move * Time.deltaTime * 5f;
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            Vector3 move = new Vector3(moveX, moveY, 0).normalized;
-            transform.position += move * Time.deltaTime * 2.5f;
+           
             transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
@@ -36,25 +38,11 @@ public class PPlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
 
-            Vector3 move = new Vector3(moveX, moveY, 0).normalized;
-            transform.position += move * Time.deltaTime * 2.5f;
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            Vector3 move = new Vector3(moveX, moveY, 0).normalized;
-            transform.position += move * Time.deltaTime * 2.5f;
-            
-
-        }
-
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            Vector3 move = new Vector3(moveX, moveY, 0).normalized;
-            transform.position += move * Time.deltaTime * 2.5f;
-
-        }
+      
+        
       
 
         if (Input.GetKeyDown(KeyCode.F))
